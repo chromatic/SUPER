@@ -4,3 +4,5 @@ MANIFEST
 README
 SUPER.pm
 t/1.t
+t/keep_going.t
+META.yml                                 Module meta-data (added by MakeMaker)

@@ -1,5 +1,12 @@
 Revision history for Perl extension SUPER.
 
+1.01 Tuesday 2nd March, 2004
+	Fix the case expressed by t/keep_going.t
+
+1.00 Saturday 18th January, 2004
+	Initial CPAN Release.
+
+
 0.01  Sat Jan 18 14:57:52 2003
 	- original version; created by h2xs 1.22 with options
 		-b 5.6.0 -AX -n SUPER

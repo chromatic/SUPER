@@ -17,12 +17,12 @@ sub super {
 package SUPER ;
 use strict;
 use warnings;
-our $VERSION = "1.0";
+our $VERSION = "1.01";
 require Exporter;
 @SUPER::ISA=qw(Exporter); @SUPER::EXPORT = qw(super);
 use Carp;
 
-sub super() { 
+sub super() {
     if (@_) {
         # Someone's trying to find SUPER's super. Blah.
         goto &UNIVERSAL::super;
@@ -31,6 +31,7 @@ sub super() {
     my $self = $_[0];
     if (!$self) { carp "super must be called from a method call" }
     my $caller= (caller(1))[3];
+    $self = caller;
     $caller =~ s/.*:://;
     goto &{$self->UNIVERSAL::super($caller)};
 }
@@ -65,7 +66,7 @@ Or just, Ruby-style:
 When subclassing a class, you occasionally want to despatch control to
 the superclass - at least conditionally and temporarily. The Perl syntax
 for calling your superclass is ugly and unwieldy:
-    
+
     $self->SUPER::method(@_);
 
 Especially when compared with its Ruby equivalent:
@@ -79,7 +80,7 @@ like
     goto &{$_[0]->super("my_method")};
 
 if you don't like wasting precious stack frames. (And since C<super>
-returns a coderef, much like L<UNIVERSAL/can>, this doesn't break 
+returns a coderef, much like L<UNIVERSAL/can>, this doesn't break
 C<use strict 'refs'>.)
 
 =head1 NOTES

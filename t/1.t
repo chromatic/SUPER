@@ -1,4 +1,4 @@
-
+#!perl
 use Test::More tests => 7;
 package Daddy;
 import Test::More;
