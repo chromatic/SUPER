@@ -1,10 +1,22 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         SUPER
-version:      1.01
-version_from: SUPER.pm
-installdirs:  site
+---
+name: SUPER
+version: 1.10
+author:
+  - Created by Simon Cozens, C<simon@cpan.org>.
+abstract: Control superclass method dispatch
+license: perl
 requires:
-
-distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.21
+  Scalar::Util: ''
+build_requires:
+  Test::More: ''
+provides:
+  DB:
+    file: lib/SUPER.pm
+    version: 1.10
+  SUPER:
+    file: lib/SUPER.pm
+    version: 1.10
+  UNIVERSAL:
+    file: lib/SUPER.pm
+    version: 1.10
+generated_by: Module::Build version 0.2608

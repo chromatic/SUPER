@@ -1,8 +1,12 @@
 Changes
+Build.PL
 Makefile.PL
 MANIFEST
 README
-SUPER.pm
+lib/SUPER.pm
 t/1.t
+t/follow_inheritance.t
 t/keep_going.t
+t/keep_going_manual.t
 META.yml                                 Module meta-data (added by MakeMaker)
+SIGNATURE    Added here by Module::Build

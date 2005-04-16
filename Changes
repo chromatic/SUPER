@@ -1,5 +1,10 @@
 Revision history for Perl extension SUPER.
 
+1.10 Sat Apr 16 05:52:13 UTC 2005 ($Rev$, $Author$)
+	- added SUPER() method and tests
+	- ported to Module::Build
+	- first release with new maintainership
+
 1.01 Tuesday 2nd March, 2004
 	Fix the case expressed by t/keep_going.t
 
