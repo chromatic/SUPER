@@ -7,8 +7,8 @@ WriteMakefile
           'NAME' => 'SUPER',
           'VERSION_FROM' => 'lib/SUPER.pm',
           'PREREQ_PM' => {
-                           'Test::More' => '',
-                           'Scalar::Util' => ''
+                           'Scalar::Util' => '',
+                           'Test::Simple' => '0.61'
                          }
         )
 ;

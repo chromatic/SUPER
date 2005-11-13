@@ -9,7 +9,7 @@ my $build = Module::Build->new(
 	},
 	build_requires =>
 	{
-		'Test::More' => '',
+		'Test::Simple' => '0.61',
 	},
 	create_makefile_pl => 'traditional',
 	sign               => 1,

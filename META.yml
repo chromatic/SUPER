@@ -1,22 +1,22 @@
 ---
 name: SUPER
-version: 1.10
+version: 1.11
 author:
-  - Created by Simon Cozens, C<simon@cpan.org>.
-abstract: Control superclass method dispatch
+  - 'Created by Simon Cozens, C<simon@cpan.org>.'
+abstract: control superclass method dispatch
 license: perl
 requires:
   Scalar::Util: ''
 build_requires:
-  Test::More: ''
+  Test::Simple: 0.61
 provides:
   DB:
     file: lib/SUPER.pm
-    version: 1.10
+    version: 1.11
   SUPER:
     file: lib/SUPER.pm
-    version: 1.10
+    version: 1.11
   UNIVERSAL:
     file: lib/SUPER.pm
-    version: 1.10
-generated_by: Module::Build version 0.2608
+    version: 1.11
+generated_by: Module::Build version 0.2611

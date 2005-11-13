@@ -2,13 +2,6 @@
 use strict;
 use warnings;
 
-BEGIN
-{
-	chdir 't' if -d 't';
-}
-
-use lib '../lib';
-
 use Test::More tests => 7;
 
 package Daddy;
@@ -48,10 +41,10 @@ my $a = Kid->new();
 $a->foo(123);
 $a->foo(50);
 
-is( $a->super("new"), \&Daddy::new, "Kid's new is inherited from Daddy" );
-is( $a->super("foo"), \&Daddy::foo,
-	"... as is its foo, even though that's overriden" );
-is( SUPER->super("import"),
+is( $a->super( 'new' ), \&Daddy::new, 'Kid inherits new() from Daddy' );
+is( $a->super( 'foo' ), \&Daddy::foo,
+	'... as it does foo, even though it overrides it' );
+is( SUPER->super( 'import' ),
 	\&Exporter::import, "SUPER's import comes from Exporter" );
-is( Test::More->super("import"),
-	\&Exporter::import, "... and so does Test::More's" );
+is( Test::Builder::Module->super( 'import' ),
+	\&Exporter::import, '... as does Test::Builder::Module' );

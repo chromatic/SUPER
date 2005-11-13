@@ -31,7 +31,7 @@ package SUPER;
 use strict;
 use warnings;
 
-our $VERSION = '1.10';
+our $VERSION = '1.11';
 use base 'Exporter';
 
 @SUPER::ISA    = qw(Exporter);
@@ -68,7 +68,7 @@ sub super()
 
 	@_ = DB::uplevel_args();
 
-	carp 'super() must be called from a method call' unless $_[0];
+	carp 'You must call super() from a method call' unless $_[0];
 
 	my $caller = ( caller(1) )[3];
 	my $self   = caller();
@@ -81,52 +81,52 @@ sub super()
 
 =head1 NAME
 
-SUPER - Control superclass method dispatch
+SUPER - control superclass method dispatch
 
 =head1 SYNOPSIS
 
 Find the parent method that would run if this weren't here:
 
     sub my_method
-	{
+    {
         my $self = shift;
         my $super = $self->super('my_method'); # Who's your daddy?
 
         if ($want_to_deal_with_this)
-		{
-			# ...
-		}
+        {
+            # ...
+        }
         else
-		{
-			$super->($self, @_)
-		}
+        {
+            $super->($self, @_)
+        }
     }
 
 Or Ruby-style:
 
     sub my_method
-	{
+    {
         my $self = shift;
 
         if ($want_to_deal_with_this)
-		{
-			# ...
-		}
+        {
+            # ...
+        }
         else
-		{
-			super;
-		}
+        {
+            super;
+        }
     }
 
 Or call the super method manually, with respect to inheritance, and passing
 different arguments:
 
     sub my_method
-	{
+    {
         my $self = shift;
 
-		# parent handles args backwardly
-		$self->SUPER( reverse @_ );
+        # parent handles args backwardly
+        $self->SUPER( reverse @_ );
     }
 
 =head1 DESCRIPTION
@@ -137,7 +137,7 @@ calling your superclass is ugly and unwieldy:
 
     $self->SUPER::method(@_);
 
-especially when compared with its Ruby equivalent:
+especially when compared to its Ruby equivalent:
 
     super;
 
@@ -145,29 +145,58 @@ It's even worse in that the normal Perl redispatch mechanism only dispatches to
 the parent of the class containing the method I<at compile time>.  That doesn't work very well for mixins and roles.
 
 This module provides nicer equivalents, along with the universal method
-C<super> to determine a class' own superclass. This allows you do to things
-like:
+C<super> to determine a class' own superclass. This allows you to do things
+such as:
 
     goto &{$_[0]->super('my_method')};
 
-if you don't like wasting precious stack frames. (Because C<super>
-returns a coderef, much like L<UNIVERSAL/can>, this doesn't break
-C<use strict 'refs'>.)
+if you don't like wasting precious stack frames. (Because C<super> returns a
+coderef, much like L<UNIVERSAL/can>, this doesn't break C<use strict 'refs'>.)
 
 If you are using roles or mixins or otherwise pulling in methods from other
-packages that need to dispatch to their super-methods, or if you want to pass
+packages that need to dispatch to their super methods, or if you want to pass
 different arguments to the super method, use the C<SUPER()> method:
 
-	$self->SUPER( qw( other arguments here ) );
+    $self->SUPER( qw( other arguments here ) );
+
+=head1 FUNCTIONS and METHODS
+
+This module provides the following functions and methods:
+
+=over
+
+=item C<super()>
+
+This function calls the super method of the currently-executing method, no
+matter where the super method is in the hierarchy.
+
+This takes no arguments; it passes the same arguments passed to the
+currently-executing method.
+
+The module exports this function by default.
+
+=item C<find_parent( $class, $method, $prune )>
+
+Attempts to find a parent implementation of C<$method> starting with C<$class>.
+If you pass C<$prune>, it will not ignore the method found in that package, if
+it exists there.
+
+The module does not export this function by default.  Call it directly.
+
+=item C<SUPER()>
+
+Calls the super method of the currently-executing method.  You I<can> pass
+arguments.  This is a method.
+
+=back
 
 =head1 NOTES
 
 Using C<super> doesn't let you pass alternate arguments to your superclass's
-method. If you want to pass different arguments, t use C<SUPER> instead D'oh.
+method. If you want to pass different arguments, use C<SUPER> instead.  D'oh.
 
-This module does a small amount of Deep Magic to find out what arguments the
-method B<calling> C<super()> itself had, and this may confuse things like
-C<Devel::Cover>.
+This module does a small amount of Deep Magic to find the arguments of method
+I<calling> C<super()> itself.  This may confuse tools such as C<Devel::Cover>.
 
 =head1 AUTHOR
 
