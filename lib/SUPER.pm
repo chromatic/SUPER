@@ -11,7 +11,7 @@ use Scalar::Util 'blessed';
 
 sub super
 {
-	return ( SUPER::find_parent( @_ ) )[0];
+	return ( SUPER::find_parent( @_, '', $_[0] ) )[0];
 }
 
 sub SUPER
@@ -20,7 +20,8 @@ sub SUPER
 	my $blessed          = blessed( $self );
 	my $self_class       = $blessed ? $blessed : $self;
 	my ($class, $method) = ( caller( 1 ) )[3] =~ /(.+)::(\w+)$/;
-	my ($sub, $parent)   = SUPER::find_parent( $self_class, $method, $class );
+	my ($sub, $parent)   =
+		SUPER::find_parent( $self_class, $method, $class , $self);
 
 	return unless $sub;
 	goto &$sub;
@@ -31,40 +32,47 @@ package SUPER;
 use strict;
 use warnings;
 
-our $VERSION = '1.11';
+our $VERSION = '1.12';
 use base 'Exporter';
 
-@SUPER::ISA    = qw(Exporter);
-@SUPER::EXPORT = qw(super);
+@SUPER::ISA    = 'Exporter';
+@SUPER::EXPORT = 'super';
 
 use Carp;
 use Scalar::Util 'blessed';
 
 sub find_parent
 {
-	my ($class, $method, $prune)   = @_;
-	my $blessed                    = blessed( $class );
-	$class                         = $blessed if $blessed;
-	$prune                       ||= '';
+	my ($class, $method, $prune, $invocant) = @_;
+	my $blessed                             = blessed( $class );
+	$invocant                             ||= $class;
+	$class                                  = $blessed if $blessed;
+	$prune                                ||= '';
 
 	my $subref;
 
-	no strict 'refs';
-
-	for my $parent ( @{ $class . '::ISA' }, 'UNIVERSAL' )
+	for my $parent ( get_all_parents( $invocant, $class ), 'UNIVERSAL' )
 	{
-		return find_parent( $parent, $method ) if $parent eq $prune;
+		return find_parent( $parent, $method, '', $invocant )
+			if $parent eq $prune;
 		return ( $subref, $parent ) if $subref = $parent->can($method);
 	}
 }
 
+sub get_all_parents
+{
+	my ($invocant, $class) = @_;
+
+	return $invocant->__get_parents() if $invocant->can( '__get_parents' );
+
+	no strict 'refs';
+	return @{ $class . '::ISA' };
+}
+
 sub super()
 {
-	if (@_)
-	{
-		# Someone's trying to find SUPER's super. Blah.
-		goto &UNIVERSAL::super;
-	}
+	# Someone's trying to find SUPER's super. Blah.
+	goto &UNIVERSAL::super if @_;
 
 	@_ = DB::uplevel_args();
 
@@ -175,13 +183,20 @@ currently-executing method.
 
 The module exports this function by default.
 
-=item C<find_parent( $class, $method, $prune )>
+=item C<find_parent( $class, $method, $prune, $invocant)>
 
 Attempts to find a parent implementation of C<$method> starting with C<$class>.
 If you pass C<$prune>, it will not ignore the method found in that package, if
-it exists there.
+it exists there.  Pass C<$invocant> if the object itself might have a different
+idea of its parents.
 
 The module does not export this function by default.  Call it directly.
+
+=item C<get_all_parents( $invocant, $class)>
+
+Returns all of the parents for the C<$invocant>, if it supports the
+C<__get_parents()> method or the contents of C<@ISA> for C<$class>.  You
+probably oughtn't call this on your own.
 
 =item C<SUPER()>
 
@@ -197,6 +212,10 @@ method. If you want to pass different arguments, use C<SUPER> instead.  D'oh.
 
 This module does a small amount of Deep Magic to find the arguments of method
 I<calling> C<super()> itself.  This may confuse tools such as C<Devel::Cover>.
+
+In your own code, if you do complicated things with proxy objects and the like,
+define C<__get_parents()> to return a list of all parents of the object to
+which you really want to dispatch.
 
 =head1 AUTHOR
 

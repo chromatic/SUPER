@@ -2,13 +2,14 @@
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
-          'PL_FILES' => {},
-          'INSTALLDIRS' => 'site',
           'NAME' => 'SUPER',
           'VERSION_FROM' => 'lib/SUPER.pm',
           'PREREQ_PM' => {
                            'Scalar::Util' => '',
                            'Test::Simple' => '0.61'
-                         }
+                         },
+          'INSTALLDIRS' => 'site',
+          'EXE_FILES' => [],
+          'PL_FILES' => {}
         )
 ;

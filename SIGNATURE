@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.44.
+signed via the Module::Signature module, version 0.53.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,23 +14,25 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 85fdc34829c6b62a49da1789511fa8cbef40d8ef Build.PL
-SHA1 fdd0a0417bb3d016b8c59ebead288c2409a4310c Changes
-SHA1 540b87a2046477e99406816314c4024325ae0691 MANIFEST
-SHA1 fccd1b4220028f2ba1270adc98d20ae5689f8bfc META.yml
-SHA1 09c0bdff9fa3b4c94762adca52e7b8a22ce657e2 Makefile.PL
-SHA1 15a1e85f6f1d309d957d28d0e9a85099f093a2aa README
-SHA1 b394f877da8c6629fa7b27cc7d085b393ba2876c lib/SUPER.pm
+SHA1 6382e4fa940a852e952e3e55a16730bdc03b0973 Build.PL
+SHA1 203bd1a5bedbe92bc7c9c2887f9f8fcb55327b99 Changes
+SHA1 307d6272d6223a1e3bbb0d755613d4a113e5bec0 MANIFEST
+SHA1 e0cc8d2cecb0268ac57cbb228a08bdfd49927ab3 META.yml
+SHA1 bf6bb7a0d6b73b59b4740fa72efade3a114c0247 Makefile.PL
+SHA1 97a4f579f76ede57f48a3b8578da15c7813e3336 README
+SHA1 ea1fe8f0cfd58b7b3b0fab292d46b9eb5cafe117 lib/SUPER.pm
 SHA1 d7b3801e7922a975517666b04365e40fbec87522 t/1.t
+SHA1 e7fbd29bd994639e82a480ca7668208c84faf780 t/developer/0-signature.t
+SHA1 0190346d7072d458c8a10a45c19f86db641dcc48 t/developer/pod.t
+SHA1 4999108be25c1c212ebf55f90dda0511e7598c63 t/developer/pod_coverage.t
 SHA1 16a7798d7352fcfe91919b81e3833008597ca71b t/follow_inheritance.t
+SHA1 568eb2860764d57c7c99d67368cd8888d42db2b2 t/get_all_parents.t
 SHA1 3d6b431540f786b969ff8832aa1eaa2982f0c12b t/keep_going.t
 SHA1 6697599f16f89d3bf57939973e3cc25a6589527b t/keep_going_manual.t
-SHA1 0190346d7072d458c8a10a45c19f86db641dcc48 t/pod.t
-SHA1 4999108be25c1c212ebf55f90dda0511e7598c63 t/pod_coverage.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.1 (GNU/Linux)
+Version: GnuPG v1.4.2.2 (GNU/Linux)
 
-iD8DBQFDdpBjBd8Wn1wI6cQRArmXAJ4iZCckpZqY6/Tk7vc5zukBic6PzACffO2s
-CDqPYZOcHACVt/IAVBGRCCs=
-=SsuJ
+iD8DBQFESC02qX/z6NoU2UoRAtYgAKCSMiZnWXY7TI8+ED8ne6Fg2avRdgCgiaUL
+/husyQxHq+tMEnRAv0lq2aM=
+=Qib8
 -----END PGP SIGNATURE-----

@@ -1,6 +1,10 @@
 Revision history for Perl extension SUPER.
 
-1.11 Sun Nov 13 00:59:29 UTC 2005 ($Rev$, $Author$)
+1.12 Fri Apr 21 00:51:12 UTC 2006 ($Rev: 15993 $, $Author: chromatic $)
+	- look for parents better in case of a proxy or mock object
+	- added developer test goodness to make life easier for installers
+
+1.11 Sun Nov 13 00:59:29 UTC 2005 (Rev: 9748, Author: chromatic)
 	- cleaned up documentation
 	- added POD testing tests
 	- fixed failing 1.t test -- due to Test::More changes
