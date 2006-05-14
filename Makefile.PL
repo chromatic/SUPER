@@ -6,6 +6,7 @@ WriteMakefile
           'VERSION_FROM' => 'lib/SUPER.pm',
           'PREREQ_PM' => {
                            'Scalar::Util' => '',
+                           'Sub::Identify' => '',
                            'Test::Simple' => '0.61'
                          },
           'INSTALLDIRS' => 'site',

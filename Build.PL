@@ -35,7 +35,8 @@ my $build = $class->new(
 	license     => 'perl',
 	requires    =>
 	{
-		'Scalar::Util' => '',
+		'Scalar::Util'  => '',
+		'Sub::Identify' => '',
 	},
 	build_requires =>
 	{

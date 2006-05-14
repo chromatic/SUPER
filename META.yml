@@ -1,6 +1,6 @@
 ---
 name: SUPER
-version: 1.12
+version: 1.13
 author:
   - 'Created by Simon Cozens, C<simon@cpan.org>.'
 abstract: control superclass method dispatch
@@ -9,6 +9,7 @@ resources:
   license: http://dev.perl.org/licenses/
 requires:
   Scalar::Util: ''
+  Sub::Identify: ''
 build_requires:
   Test::Simple: 0.61
 provides:
@@ -16,10 +17,10 @@ provides:
     file: lib/SUPER.pm
   SUPER:
     file: lib/SUPER.pm
-    version: 1.12
+    version: 1.13
   UNIVERSAL:
     file: lib/SUPER.pm
-generated_by: Module::Build version 0.2709
+generated_by: Module::Build version 0.28
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
   version: 1.2

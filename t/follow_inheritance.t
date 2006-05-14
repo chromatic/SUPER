@@ -8,7 +8,7 @@ BEGIN
 use lib '../lib';
 
 use strict;
-use Test::More tests => 5;
+use Test::More tests => 6;
 
 my $module = 'SUPER';
 use_ok( $module ) or exit;
@@ -51,6 +51,10 @@ package Quux;
 *Quux::foo = \&Baz::foo;
 *Quux::foo = 1;
 
+package Qaax;
+
+@Qaax::ISA = 'Quux';
+
 package main;
 
 my $baz = bless [], 'Quux';
@@ -61,3 +65,6 @@ is( $baz->foo(), 'Foo',
 is_deeply( $baz->foo(), [ 'Foo', 'Bar' ], '... even when reset' );
 is_deeply( Quux->foo(), [ 'Foo', 'Bar' ], '... for class calls too' );
 is( Foo->go_nowhere(), (), 'SUPER() and should go nowhere with nowhere to go' );
+
+my $q   = bless {}, 'Qaax';
+is_deeply( $q->foo(), [ 'Foo', 'Bar' ], 'mu' );

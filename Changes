@@ -1,6 +1,10 @@
 Revision history for Perl extension SUPER.
 
-1.12 Fri Apr 21 00:51:12 UTC 2006 ($Rev: 15993 $, $Author: chromatic $)
+1.13 Sun May 14 01:05:31 UTC 2006 ($Rev: 16687 $, $Author: chromatic $)
+	- fixed SUPER() calls when inheriting the method being called (yow!)
+	- fixed a few documentation formatting nits
+
+1.12 Fri Apr 21 00:51:12 UTC 2006 (Rev: 15993, Author: chromatic)
 	- look for parents better in case of a proxy or mock object
 	- added developer test goodness to make life easier for installers
 

@@ -1,7 +1,7 @@
-SUPER version 1.12
+SUPER version 1.13
 ==================
 
-Fri Apr 21 00:42:26 UTC 2006
+Sun May 14 01:03:38 UTC 2006
 
 This module provides three different ways to control superclass method
 dispatch.  Please see the POD for details.
@@ -20,6 +20,7 @@ DEPENDENCIES
 This module requires these other modules and libraries:
 
   Module::Build to install, ideally
+  Sub::Identify to run
   Test::More to test
 
 COPYRIGHT AND LICENCE

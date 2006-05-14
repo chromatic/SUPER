@@ -21,7 +21,7 @@ sub SUPER
 	my $self_class       = $blessed ? $blessed : $self;
 	my ($class, $method) = ( caller( 1 ) )[3] =~ /(.+)::(\w+)$/;
 	my ($sub, $parent)   =
-		SUPER::find_parent( $self_class, $method, $class , $self);
+		SUPER::find_parent( $self_class, $method, $class, $self );
 
 	return unless $sub;
 	goto &$sub;
@@ -32,14 +32,16 @@ package SUPER;
 use strict;
 use warnings;
 
-our $VERSION = '1.12';
+our $VERSION = '1.13';
 use base 'Exporter';
 
 @SUPER::ISA    = 'Exporter';
 @SUPER::EXPORT = 'super';
 
 use Carp;
+
 use Scalar::Util 'blessed';
+use Sub::Identify ();
 
 sub find_parent
 {
@@ -49,13 +51,19 @@ sub find_parent
 	$class                                  = $blessed if $blessed;
 	$prune                                ||= '';
 
-	my $subref;
+	my @parents = get_all_parents( $invocant, $class );
 
-	for my $parent ( get_all_parents( $invocant, $class ), 'UNIVERSAL' )
+	for my $parent ( @parents )
 	{
 		return find_parent( $parent, $method, '', $invocant )
 			if $parent eq $prune;
-		return ( $subref, $parent ) if $subref = $parent->can($method);
+
+		if ( my $subref = $parent->can($method) )
+		{
+			my $source = Sub::Identify::sub_fullname( $subref );
+			next if $source eq "${prune}::$method";
+			return ( $subref, $parent );
+		}
 	}
 }
 
@@ -63,10 +71,20 @@ sub get_all_parents
 {
 	my ($invocant, $class) = @_;
 
-	return $invocant->__get_parents() if $invocant->can( '__get_parents' );
+	my @parents;
 
-	no strict 'refs';
-	return @{ $class . '::ISA' };
+	if ( $invocant->can( '__get_parents' ) )
+	{
+		@parents = $invocant->__get_parents();
+	}
+	else
+	{
+		no strict 'refs';
+		@parents = @{ $class . '::ISA' };
+	}
+
+	return 'UNIVERSAL' unless @parents;
+	return @parents, map { get_all_parents( $_, $_ ) } @parents;
 }
 
 sub super()
@@ -183,7 +201,7 @@ currently-executing method.
 
 The module exports this function by default.
 
-=item C<find_parent( $class, $method, $prune, $invocant)>
+=item C<find_parent( $class, $method, $prune, $invocant )>
 
 Attempts to find a parent implementation of C<$method> starting with C<$class>.
 If you pass C<$prune>, it will not ignore the method found in that package, if
@@ -192,7 +210,7 @@ idea of its parents.
 
 The module does not export this function by default.  Call it directly.
 
-=item C<get_all_parents( $invocant, $class)>
+=item C<get_all_parents( $invocant, $class )>
 
 Returns all of the parents for the C<$invocant>, if it supports the
 C<__get_parents()> method or the contents of C<@ISA> for C<$class>.  You
