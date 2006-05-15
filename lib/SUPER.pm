@@ -32,7 +32,7 @@ package SUPER;
 use strict;
 use warnings;
 
-our $VERSION = '1.13';
+our $VERSION = '1.14';
 use base 'Exporter';
 
 @SUPER::ISA    = 'Exporter';
@@ -55,9 +55,6 @@ sub find_parent
 
 	for my $parent ( @parents )
 	{
-		return find_parent( $parent, $method, '', $invocant )
-			if $parent eq $prune;
-
 		if ( my $subref = $parent->can($method) )
 		{
 			my $source = Sub::Identify::sub_fullname( $subref );

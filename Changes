@@ -1,6 +1,9 @@
 Revision history for Perl extension SUPER.
 
-1.13 Sun May 14 01:05:31 UTC 2006 ($Rev: 16687 $, $Author: chromatic $)
+1.14 Mon May 15 23:47:24 UTC 2006
+	- removed nearly-dead code that made another nasty loop (bugfix)
+
+1.13 Sun May 14 01:05:31 UTC 2006 (Rev: 16687, Author: chromatic)
 	- fixed SUPER() calls when inheriting the method being called (yow!)
 	- fixed a few documentation formatting nits
 
