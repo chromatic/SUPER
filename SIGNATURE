@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.53.
+signed via the Module::Signature module, version 0.54.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,14 +14,15 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 8f9dadff2c9e31af53c2396605e44a5d9cb6a803 Build.PL
-SHA1 2c65dee7078f304f3e63901188ee4ea8504b2fb9 Changes
-SHA1 307d6272d6223a1e3bbb0d755613d4a113e5bec0 MANIFEST
-SHA1 2a065c476bcbf071c05f7397fddfaa4e96d14f8e META.yml
+SHA1 b3833cc3dfcb2a6884685627dc1fc5c3d9d8781b Build.PL
+SHA1 41f066dd94b576d9bd4ca8130101a4e4f238ced9 Changes
+SHA1 5c3b18246d4f1abfc1ef5aa17d4f7488b46034a8 MANIFEST
+SHA1 366735a6adb9476ddabb59c692c04f6d01b3d2f7 META.yml
 SHA1 c9bd1bd164f211ed691834243b6c3828e1dab035 Makefile.PL
-SHA1 452782dfab181a4206afa35ee793fb7a0e44ec00 README
-SHA1 e3b708fdd99a4b827af0cfb4367664136ff4b1ae lib/SUPER.pm
+SHA1 b29e779340defeb53528fd6939a13d28b1e9638e README
+SHA1 7ebb0c0bf207997542e136ca7def4819afc20645 lib/SUPER.pm
 SHA1 d7b3801e7922a975517666b04365e40fbec87522 t/1.t
+SHA1 bb332e645fc939123624c29a0be6730bdd6fb6bd t/bugs.t
 SHA1 e7fbd29bd994639e82a480ca7668208c84faf780 t/developer/0-signature.t
 SHA1 0190346d7072d458c8a10a45c19f86db641dcc48 t/developer/pod.t
 SHA1 4999108be25c1c212ebf55f90dda0511e7598c63 t/developer/pod_coverage.t
@@ -32,7 +33,7 @@ SHA1 6697599f16f89d3bf57939973e3cc25a6589527b t/keep_going_manual.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.2.2 (GNU/Linux)
 
-iD8DBQFEaRPiqX/z6NoU2UoRAokvAJ4pwMGgxs904XfQ5oDmNiXRI6QGtACgjgVH
-n8O0gpCtzQonv+SBf6SXSVM=
-=8Ebc
+iD8DBQFFHtwgqX/z6NoU2UoRAifTAKCJDfOJ2TtyeMgEzGtcBpMCqI27vACfQJy5
+8nghgSBMQVuuEV/XDHoGe4g=
+=ilVV
 -----END PGP SIGNATURE-----

@@ -44,6 +44,10 @@ my $build = $class->new(
 	},
 	create_makefile_pl => 'traditional',
 	sign               => 1,
+	no_index     =>
+	{
+		package => [ qw( UNIVERSAL DB ) ]
+	},
 );
 
 $build->create_build_script();

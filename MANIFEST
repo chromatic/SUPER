@@ -5,6 +5,7 @@ MANIFEST
 README
 lib/SUPER.pm
 t/1.t
+t/bugs.t
 t/follow_inheritance.t
 t/get_all_parents.t
 t/keep_going.t

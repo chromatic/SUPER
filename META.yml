@@ -1,6 +1,6 @@
 ---
 name: SUPER
-version: 1.14
+version: 1.15
 author:
   - 'Created by Simon Cozens, C<simon@cpan.org>.'
 abstract: control superclass method dispatch
@@ -17,10 +17,14 @@ provides:
     file: lib/SUPER.pm
   SUPER:
     file: lib/SUPER.pm
-    version: 1.14
+    version: 1.15
   UNIVERSAL:
     file: lib/SUPER.pm
-generated_by: Module::Build version 0.28
+no_index:
+  package:
+    - UNIVERSAL
+    - DB
+generated_by: Module::Build version 0.2801
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
   version: 1.2

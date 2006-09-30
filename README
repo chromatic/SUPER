@@ -1,7 +1,8 @@
-SUPER version 1.14
+SUPER version 1.15
 ==================
 
-Mon May 15 23:48:12 UTC 2006
+
+Sat Sep 30 21:03:26 UTC 2006
 
 This module provides three different ways to control superclass method
 dispatch.  Please see the POD for details.
@@ -21,6 +22,7 @@ This module requires these other modules and libraries:
 
   Module::Build to install, ideally
   Sub::Identify to run
+  Scalar::Util to run
   Test::More to test
 
 COPYRIGHT AND LICENCE

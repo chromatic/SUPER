@@ -18,7 +18,7 @@ sub SUPER
 {
 	my $self             = $_[0];
 	my $blessed          = blessed( $self );
-	my $self_class       = $blessed ? $blessed : $self;
+	my $self_class       = defined $blessed ? $blessed : $self;
 	my ($class, $method) = ( caller( 1 ) )[3] =~ /(.+)::(\w+)$/;
 	my ($sub, $parent)   =
 		SUPER::find_parent( $self_class, $method, $class, $self );
@@ -32,7 +32,7 @@ package SUPER;
 use strict;
 use warnings;
 
-our $VERSION = '1.14';
+our $VERSION = '1.15';
 use base 'Exporter';
 
 @SUPER::ISA    = 'Exporter';
@@ -68,13 +68,9 @@ sub get_all_parents
 {
 	my ($invocant, $class) = @_;
 
-	my @parents;
+	my @parents = eval { $invocant->__get_parents() };
 
-	if ( $invocant->can( '__get_parents' ) )
-	{
-		@parents = $invocant->__get_parents();
-	}
-	else
+	unless ( @parents )
 	{
 		no strict 'refs';
 		@parents = @{ $class . '::ISA' };
@@ -198,6 +194,11 @@ currently-executing method.
 
 The module exports this function by default.
 
+I<Note>: you I<must> have the appropriate C<package> declaration in place for
+this to work.  That is, you must have I<compiled> the method in which you use
+this function in the package from which you want to use it.  Them's the breaks
+with Perl 5.
+
 =item C<find_parent( $class, $method, $prune, $invocant )>
 
 Attempts to find a parent implementation of C<$method> starting with C<$class>.
@@ -222,6 +223,9 @@ arguments.  This is a method.
 
 =head1 NOTES
 
+I<Beware:> if you do weird things with code generation, be sure to I<name> your
+anonymous subroutines.  See I<Perl Hacks> #57.
+
 Using C<super> doesn't let you pass alternate arguments to your superclass's
 method. If you want to pass different arguments, use C<SUPER> instead.  D'oh.
 
@@ -237,6 +241,8 @@ which you really want to dispatch.
 Created by Simon Cozens, C<simon@cpan.org>.
 
 Maintained by chromatic, E<lt>chromatic at wgz dot orgE<gt> after version 1.01.
+
+Thanks to Joshua ben Jore for bug reports and suggestions.
 
 =head1 LICENSE
 
