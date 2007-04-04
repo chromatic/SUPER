@@ -32,7 +32,7 @@ package SUPER;
 use strict;
 use warnings;
 
-our $VERSION = '1.15';
+our $VERSION = '1.16';
 use base 'Exporter';
 
 @SUPER::ISA    = 'Exporter';
@@ -53,9 +53,16 @@ sub find_parent
 
 	my @parents = get_all_parents( $invocant, $class );
 
-	for my $parent ( @parents )
+    # only check parents above the $prune point
+	my $i       = $#parents;
+	for my $parent (reverse @parents) {
+	    last if $parent eq $prune;
+	    $i--;
+	}
+
+	for my $parent ( @parents[$i .. $#parents] )
 	{
-		if ( my $subref = $parent->can($method) )
+		if ( my $subref = $parent->can( $method ) )
 		{
 			my $source = Sub::Identify::sub_fullname( $subref );
 			next if $source eq "${prune}::$method";

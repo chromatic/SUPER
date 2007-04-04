@@ -1,7 +1,11 @@
 Revision history for Perl extension SUPER.
 
+1.16
+    Wed Apr  4 05:54:23 UTC 2007 ($Rev$, $Author$)
+    - avoid deep recursion problem on deep hierarchies (RT #24795, Paul Talacko)
+
 1.15
-	Sat Sep 30 20:34:51 UTC 2006 ($Rev: 22049 $, $Author: chromatic $)
+	Sat Sep 30 20:34:51 UTC 2006 (Rev: 2941, Author: chromatic)
 	- allow weird class names (RT #21491, Joshua ben Jore, with some caveats)
 	- added documentation for weird class names and caveats
 	- fixed deep recursion on can() error (RT #21644, Joshua ben Jore again)

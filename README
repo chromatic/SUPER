@@ -1,8 +1,7 @@
-SUPER version 1.15
+SUPER version 1.16
 ==================
 
-
-Sat Sep 30 21:03:26 UTC 2006
+Wed Apr  4 05:55:29 UTC 2007
 
 This module provides three different ways to control superclass method
 dispatch.  Please see the POD for details.
@@ -11,10 +10,10 @@ INSTALLATION
 
 To install this module type the following:
 
-   perl Build.PL
-   perl Build
-   perl Build test
-   perl Build install
+   $ perl ./Build.PL
+   $ perl ./Build
+   $ perl ./Build test
+   $ sudo perl ./Build install
 
 DEPENDENCIES
 
@@ -28,7 +27,7 @@ This module requires these other modules and libraries:
 COPYRIGHT AND LICENCE
 
 Copyright (c) 2003 Simon Cozens.
-Copyright (c) 2004-2006 chromatic.
+Copyright (c) 2004-2007 chromatic.
 
 This library is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself. 
