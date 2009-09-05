@@ -1,7 +1,7 @@
-SUPER version 1.16
+SUPER version 1.17
 ==================
 
-Wed Apr  4 05:55:29 UTC 2007
+Sat Sep  5 01:50:48 UTC 2009
 
 This module provides three different ways to control superclass method
 dispatch.  Please see the POD for details.
@@ -27,7 +27,7 @@ This module requires these other modules and libraries:
 COPYRIGHT AND LICENCE
 
 Copyright (c) 2003 Simon Cozens.
-Copyright (c) 2004-2007 chromatic.
+Copyright (c) 2004-2009 chromatic.
 
 This library is free software; you can redistribute it and/or modify it under
-the same terms as Perl itself. 
+the same terms as Perl 5.10 itself.

@@ -1,6 +1,5 @@
 Changes
 Build.PL
-Makefile.PL
 MANIFEST
 README
 lib/SUPER.pm
@@ -11,6 +10,4 @@ t/follow_inheritance.t
 t/get_all_parents.t
 t/keep_going.t
 t/keep_going_manual.t
-t/developer/pod.t
-t/developer/pod_coverage.t
 META.yml                                 Module meta-data (added by MakeMaker)

@@ -1,7 +1,7 @@
 Revision history for Perl extension SUPER.
 
 1.16
-    Wed Apr  4 05:54:23 UTC 2007 ($Rev$, $Author$)
+    Wed Apr  4 05:54:23 UTC 2007 ($Rev: 154 $, $Author: chromatic $)
     - avoid deep recursion problem on deep hierarchies (RT #24795, Paul Talacko)
 
 1.15

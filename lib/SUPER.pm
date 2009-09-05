@@ -32,7 +32,7 @@ package SUPER;
 use strict;
 use warnings;
 
-our $VERSION = '1.16';
+our $VERSION = '1.17';
 use base 'Exporter';
 
 @SUPER::ISA    = 'Exporter';
@@ -245,9 +245,10 @@ which you really want to dispatch.
 
 =head1 AUTHOR
 
-Created by Simon Cozens, C<simon@cpan.org>.
+Created by Simon Cozens, C<simon@cpan.org>.  Copyright (c) 2003 Simon Cozens.
 
 Maintained by chromatic, E<lt>chromatic at wgz dot orgE<gt> after version 1.01.
+Copyright (c) 2004-2009 chromatic.
 
 Thanks to Joshua ben Jore for bug reports and suggestions.
 
