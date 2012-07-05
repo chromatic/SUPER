@@ -28,11 +28,11 @@ sub SUPER
 }
 
 package SUPER;
+# ABSTRACT: control superclass method dispatch
 
 use strict;
 use warnings;
 
-our $VERSION = '1.17';
 use base 'Exporter';
 
 @SUPER::ISA    = 'Exporter';
