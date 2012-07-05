@@ -1,8 +1,12 @@
-package DB;
+# Dear PAUSE: please do not index this
+package
+    DB;
 
 sub uplevel_args { my @foo = caller(2); return @DB::args }
 
-package UNIVERSAL;
+# Dear PAUSE: nor this
+package
+    UNIVERSAL;
 
 use strict;
 use warnings;

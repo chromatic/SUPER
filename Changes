@@ -1,5 +1,9 @@
 Revision history for Perl extension SUPER.
 
+{{$NEXT}}
+    - resolved PAUSE packaging nit (Oliver Mengué, RT #77110)
+    - converted to dzil
+
 1.16
     Wed Apr  4 05:54:23 UTC 2007 ($Rev: 154 $, $Author: chromatic $)
     - avoid deep recursion problem on deep hierarchies (RT #24795, Paul Talacko)
