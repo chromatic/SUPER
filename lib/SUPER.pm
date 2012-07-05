@@ -11,20 +11,20 @@ use Scalar::Util 'blessed';
 
 sub super
 {
-	return ( SUPER::find_parent( @_, '', $_[0] ) )[0];
+    return ( SUPER::find_parent( @_, '', $_[0] ) )[0];
 }
 
 sub SUPER
 {
-	my $self             = $_[0];
-	my $blessed          = blessed( $self );
-	my $self_class       = defined $blessed ? $blessed : $self;
-	my ($class, $method) = ( caller( 1 ) )[3] =~ /(.+)::(\w+)$/;
-	my ($sub, $parent)   =
-		SUPER::find_parent( $self_class, $method, $class, $self );
+    my $self             = $_[0];
+    my $blessed          = blessed( $self );
+    my $self_class       = defined $blessed ? $blessed : $self;
+    my ($class, $method) = ( caller( 1 ) )[3] =~ /(.+)::(\w+)$/;
+    my ($sub, $parent)   =
+        SUPER::find_parent( $self_class, $method, $class, $self );
 
-	return unless $sub;
-	goto &$sub;
+    return unless $sub;
+    goto &$sub;
 }
 
 package SUPER;
@@ -45,62 +45,62 @@ use Sub::Identify ();
 
 sub find_parent
 {
-	my ($class, $method, $prune, $invocant) = @_;
-	my $blessed                             = blessed( $class );
-	$invocant                             ||= $class;
-	$class                                  = $blessed if $blessed;
-	$prune                                ||= '';
+    my ($class, $method, $prune, $invocant) = @_;
+    my $blessed                             = blessed( $class );
+    $invocant                             ||= $class;
+    $class                                  = $blessed if $blessed;
+    $prune                                ||= '';
 
-	my @parents = get_all_parents( $invocant, $class );
+    my @parents = get_all_parents( $invocant, $class );
 
     # only check parents above the $prune point
-	my $i       = $#parents;
-	for my $parent (reverse @parents) {
-	    last if $parent eq $prune;
-	    $i--;
-	}
+    my $i       = $#parents;
+    for my $parent (reverse @parents) {
+        last if $parent eq $prune;
+        $i--;
+    }
 
-	for my $parent ( @parents[$i .. $#parents] )
-	{
-		if ( my $subref = $parent->can( $method ) )
-		{
-			my $source = Sub::Identify::sub_fullname( $subref );
-			next if $source eq "${prune}::$method";
-			return ( $subref, $parent );
-		}
-	}
+    for my $parent ( @parents[$i .. $#parents] )
+    {
+        if ( my $subref = $parent->can( $method ) )
+        {
+            my $source = Sub::Identify::sub_fullname( $subref );
+            next if $source eq "${prune}::$method";
+            return ( $subref, $parent );
+        }
+    }
 }
 
 sub get_all_parents
 {
-	my ($invocant, $class) = @_;
+    my ($invocant, $class) = @_;
 
-	my @parents = eval { $invocant->__get_parents() };
+    my @parents = eval { $invocant->__get_parents() };
 
-	unless ( @parents )
-	{
-		no strict 'refs';
-		@parents = @{ $class . '::ISA' };
-	}
+    unless ( @parents )
+    {
+        no strict 'refs';
+        @parents = @{ $class . '::ISA' };
+    }
 
-	return 'UNIVERSAL' unless @parents;
-	return @parents, map { get_all_parents( $_, $_ ) } @parents;
+    return 'UNIVERSAL' unless @parents;
+    return @parents, map { get_all_parents( $_, $_ ) } @parents;
 }
 
 sub super()
 {
-	# Someone's trying to find SUPER's super. Blah.
-	goto &UNIVERSAL::super if @_;
+    # Someone's trying to find SUPER's super. Blah.
+    goto &UNIVERSAL::super if @_;
 
-	@_ = DB::uplevel_args();
+    @_ = DB::uplevel_args();
 
-	carp 'You must call super() from a method call' unless $_[0];
+    carp 'You must call super() from a method call' unless $_[0];
 
-	my $caller = ( caller(1) )[3];
-	my $self   = caller();
-	$caller    =~ s/.*:://;
+    my $caller = ( caller(1) )[3];
+    my $self   = caller();
+    $caller    =~ s/.*:://;
 
-	goto &{ $self->UNIVERSAL::super($caller) };
+    goto &{ $self->UNIVERSAL::super($caller) };
 }
 
 1;
@@ -248,7 +248,7 @@ which you really want to dispatch.
 Created by Simon Cozens, C<simon@cpan.org>.  Copyright (c) 2003 Simon Cozens.
 
 Maintained by chromatic, E<lt>chromatic at wgz dot orgE<gt> after version 1.01.
-Copyright (c) 2004-2009 chromatic.
+Copyright (c) 2004-2012 chromatic.
 
 Thanks to Joshua ben Jore for bug reports and suggestions.
 
