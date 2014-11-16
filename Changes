@@ -1,6 +1,8 @@
 Revision history for Perl extension SUPER.
 
 {{$NEXT}}
+
+1.20141116 2014-11-16 14:07:18-08:00 America/Los_Angeles
     - resolved Test::More changes (RT #97939)
 
 1.20120705 2012-07-05 14:46:44 America/Los_Angeles
