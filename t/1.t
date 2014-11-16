@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 7;
+use Test::More;
 
 package Daddy;
 
@@ -41,17 +41,8 @@ my $a = Kid->new();
 $a->foo(123);
 $a->foo(50);
 
-package Inheriter;
-
-use Exporter;
-our @ISA = 'Exporter';
-
-package main;
-
 is( $a->super( 'new' ), \&Daddy::new, 'Kid inherits new() from Daddy' );
 is( $a->super( 'foo' ), \&Daddy::foo,
     '... as it does foo, even though it overrides it' );
-is( SUPER->super( 'import' ),
-    \&Exporter::import, "SUPER's import comes from Exporter" );
-is( Inheriter->super( 'import' ),
-    \&Exporter::import, '... as does Inheriter' );
+
+done_testing();

@@ -37,15 +37,18 @@ package SUPER;
 use strict;
 use warnings;
 
-use base 'Exporter';
-
-@SUPER::ISA    = 'Exporter';
-@SUPER::EXPORT = 'super';
-
 use Carp;
 
 use Scalar::Util 'blessed';
 use Sub::Identify ();
+
+# no need to use Exporter
+sub import
+{
+    my ($class) = @_;
+    my $caller  = caller();
+    do { no strict 'refs'; *{ $caller . '::super' } = \&super };
+}
 
 sub find_parent
 {
@@ -180,8 +183,7 @@ such as:
 
     goto &{$_[0]->super('my_method')};
 
-if you don't like wasting precious stack frames. (Because C<super> returns a
-coderef, much like L<UNIVERSAL/can>, this doesn't break C<use strict 'refs'>.)
+if you don't like wasting precious stack frames.
 
 If you are using roles or mixins or otherwise pulling in methods from other
 packages that need to dispatch to their super methods, or if you want to pass
@@ -252,7 +254,7 @@ which you really want to dispatch.
 Created by Simon Cozens, C<simon@cpan.org>.  Copyright (c) 2003 Simon Cozens.
 
 Maintained by chromatic, E<lt>chromatic at wgz dot orgE<gt> after version 1.01.
-Copyright (c) 2004-2012 chromatic.
+Copyright (c) 2004-2014 chromatic.
 
 Thanks to Joshua ben Jore for bug reports and suggestions.
 
