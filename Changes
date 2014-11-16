@@ -1,6 +1,7 @@
 Revision history for Perl extension SUPER.
 
 {{$NEXT}}
+    - resolved Test::More changes (RT #97939)
 
 1.20120705 2012-07-05 14:46:44 America/Los_Angeles
     - resolved PAUSE packaging nit (Oliver Mengué, RT #77110)
