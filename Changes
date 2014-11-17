@@ -1,6 +1,8 @@
 Revision history for Perl extension SUPER.
 
 {{$NEXT}}
+
+1.20141117 2014-11-17 09:12:01-08:00 America/Los_Angeles
     - improved export mechanism
     - removed useless Exporter tests
     - improved docs (RT #79681)
