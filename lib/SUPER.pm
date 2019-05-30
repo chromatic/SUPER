@@ -42,6 +42,19 @@ use Carp;
 use Scalar::Util 'blessed';
 use Sub::Identify ();
 
+BEGIN {
+    # Due to a perl bug (fixed in v5.17.4, commit 3c104e59), if SUPER.pm is
+    # loaded, perl can no longer find methods on parent when:
+    # 1) the invocant is "main" (or isa "main")
+    # 2) using the SUPER pseudo-class syntax (i.e. "main"->SUPER::...)
+    # We work around that bug by handling ->SUPER::... ourselves.
+    if ($] < 5.017004)
+    {
+        no strict 'refs';
+        *{"SUPER::AUTOLOAD"} = \&UNIVERSAL::SUPER;
+    }
+}
+
 # no need to use Exporter
 sub import
 {
