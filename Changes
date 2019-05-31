@@ -1,6 +1,7 @@
 Revision history for Perl extension SUPER.
 
 {{$NEXT}}
+    - allow main->SUPER::... to work when SUPER.pm is loaded (PR #1, Charles McGarvey)
 
 1.20141117 2014-11-17 09:12:01-08:00 America/Los_Angeles
     - improved export mechanism

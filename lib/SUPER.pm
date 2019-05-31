@@ -267,7 +267,7 @@ which you really want to dispatch.
 Created by Simon Cozens, C<simon@cpan.org>.  Copyright (c) 2003 Simon Cozens.
 
 Maintained by chromatic, E<lt>chromatic at wgz dot orgE<gt> after version 1.01.
-Copyright (c) 2004-2014 chromatic.
+Copyright (c) 2004-2019 chromatic.
 
 Thanks to Joshua ben Jore for bug reports and suggestions.
 
